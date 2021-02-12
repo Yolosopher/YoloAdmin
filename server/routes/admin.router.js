@@ -14,11 +14,12 @@ const controller = require('../controller/adminController')
 router.use('/panel', (req, res, next) => {
     if (!req.cookies.jwt) {
         res.redirect('/admin/login')
+        return
 	} else if (!req.cookies.user) {
         let decoded = jwt.verify(req.cookies.jwt, 'secret')
         res.cookie('user', decoded.id, { path: '/admin' });
         res.redirect('/admin/panel')
-        next()
+        return
 	}
     next()
 })
