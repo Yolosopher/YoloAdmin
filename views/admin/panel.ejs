@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('layouts/_head') %> 
+</head>
+<body>
+    <div class="user container">
+        <h2>User: </h2>
+        <span><%= user.email %> </span>
+        <h2>Password: </h2>
+        <span><%= user.password %> </span>
+        <form action="/admin/api/users/logout" method="GET">
+            <button class="logout" type="submit">Logout</button>
+        </form>
+    </div>
+    <main class="update-settings login-regis">
+        <form action="/admin/api/settings" method="POST">
+            <label for="email">Email:</label>
+            <div class="input-div">
+                <input value="<%= settings.email%>" type="email" name="email" id="email">
+            </div>
+            <label for="tel">Tel:</label>
+            <div class="input-div">
+                <input value="<%= settings.tel%>" type="tel" name="tel" id="tel">
+            </div>
+            <label for="linkFB">Facebook Link:</label>
+            <div class="input-div">
+                <input value="<%= settings.linkFB%>" type="text" name="linkFB" id="linkFB">
+            </div>
+            <label for="linkIG">Instagram Link:</label>
+            <div class="input-div">
+                <input value="<%= settings.linkIG%>" type="text" name="linkIG" id="linkIG">
+            </div>
+            <label for="address">Address:</label>
+            <div class="input-div">
+                <input value="<%= settings.address%>" type="text" name="address" id="address">
+            </div>
+            <button type="submit" class="submit-button">Save Settings</button>
+        </form>
+    </main>
+</body>
+</html>

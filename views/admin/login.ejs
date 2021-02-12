@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('layouts/_head') %> 
+</head>
+<body class="login-regis">
+    <form action="/admin/login" method="POST">
+        <label for="email">Email:</label>
+        <div class="input-div">
+            <input type="email" name="email" id="email">
+        </div>
+        <label for="password">Password:</label>
+        <div class="input-div">
+            <input type="password" name="password" id="password">
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+    </form>
+</body>
+</html>
