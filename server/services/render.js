@@ -1,6 +1,7 @@
 const axios = require('axios')
 const formidable = require('formidable')
 const fs = require('fs')
+const mv = require('mv')
 const nodemailer = require('nodemailer')
 const ContactsDB = require('../model/contacts')
 
@@ -26,8 +27,8 @@ exports.news = async (req, res) => {
 		console.log(req.query.id)
 
 		const settings = await axios
-		.get('http://localhost:8000/admin/api/settings')
-		.catch((err) => console.log(err))
+			.get('http://localhost:8000/admin/api/settings')
+			.catch((err) => console.log(err))
 
 		let title = '404 Error'
 		const article = await axios
@@ -40,11 +41,10 @@ exports.news = async (req, res) => {
 					article: undefined,
 					settings: settings.data,
 					title,
-				});
-				return false;
+				})
+				return false
 			})
 
-			
 		const data = await article.data
 
 		// if (article.status !== 200) {
@@ -52,7 +52,6 @@ exports.news = async (req, res) => {
 		// }
 
 		console.log(data)
-
 
 		title = data.title
 
@@ -100,25 +99,6 @@ exports.news = async (req, res) => {
 
 	res.render('front/news', {
 		articles: articles.data,
-		settings: settings.data,
-		title,
-	})
-}
-exports.newsin = async (req, res) => {
-	console.log(req.query.id)
-	// const articles = await axios.get(
-	// 	'http://localhost:8000/admin/articles/api/get-articles'
-	// )
-
-	const settings = await axios
-		.get('http://localhost:8000/admin/api/settings')
-		.catch((err) => console.log(err))
-
-	title = 'News In'
-
-	res.render('front/newsin', {
-		article: undefined,
-		// articles: articles.data,
 		settings: settings.data,
 		title,
 	})
@@ -178,9 +158,10 @@ exports.contact = async (req, res) => {
 			const newPath = 'uploads/' + lastname
 			console.log(newPath)
 
-			fs.rename(files.fileimage.path, newPath, (errorRename) => {
+			mv(files.fileimage.path, newPath, (errorRename) => {
 				console.log(errorRename)
 			})
+
 			let ctcSave = {
 				author: fields.firstlastname,
 				authorEmail: fields.email,

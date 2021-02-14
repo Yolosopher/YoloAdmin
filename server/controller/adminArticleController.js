@@ -1,6 +1,7 @@
 const formidable = require('formidable')
 const ArticlesDB = require('../model/articles')
 const fs = require('fs')
+const mv = require('mv')
 
 exports.add_article = async (req, res) => {
 	if (!req.body) {
@@ -25,7 +26,10 @@ exports.add_article = async (req, res) => {
 		const newPath = 'uploads/' + lastname
 		console.log(newPath)
 
-		fs.rename(files.fileimage.path, newPath, (errorRename) => {
+		// fs.rename(files.fileimage.path, newPath, (errorRename) => {
+		// 	console.log(errorRename)
+		// })
+		mv(files.fileimage.path, newPath, (errorRename) => {
 			console.log(errorRename)
 		})
 

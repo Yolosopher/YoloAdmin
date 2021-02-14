@@ -10,7 +10,7 @@ const controller = require('../controller/controller')
 
 router.get('/', services.home)
 router.get('/news', services.news)
-router.get('/news/:id', services.newsin)
+router.get('/news/:id', services.news)
 router.post('/news', services.news)
 router.get('/about', services.about)
 router.get('/contact', services.contact)
