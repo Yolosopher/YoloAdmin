@@ -1,0 +1,15 @@
+<header class="user container">
+    <div class="userinfo">
+        <h2>User: <span><%= user.email %> </span></h2>
+    </div>
+    <nav>
+        <ul>
+            <li class="nav-li"><a <%= title === 'Panel' && 'class=active' %> href="/admin">Settings</a></li>
+            <li class="nav-li"><a <%= title === 'About Us' && 'class=active' %> href="/admin/panel/aboutus">About Us</a></li>
+            <li class="nav-li"><a <%= title === 'Articles' && 'class=active' %> href="/admin/panel/articles">Articles</a></li>
+        </ul>
+    </nav>
+    <form action="/admin/api/users/logout" method="GET">
+        <button class="logout" type="submit">Logout</button>
+    </form>
+</header>

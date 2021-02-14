@@ -4,15 +4,7 @@
     <%- include('layouts/_head') %> 
 </head>
 <body>
-    <div class="user container">
-        <h2>User: </h2>
-        <span><%= user.email %> </span>
-        <h2>Password: </h2>
-        <span><%= user.password %> </span>
-        <form action="/admin/api/users/logout" method="GET">
-            <button class="logout" type="submit">Logout</button>
-        </form>
-    </div>
+    <%- include('layouts/_header') %> 
     <main class="update-settings login-regis">
         <form action="/admin/api/settings" method="POST">
             <label for="email">Email:</label>

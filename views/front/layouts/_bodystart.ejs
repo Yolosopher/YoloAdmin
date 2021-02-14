@@ -1,0 +1,49 @@
+<div class="app">
+    <aside>
+        <nav>
+            <ul>
+                <li <%= title === 'Home' ? 'class=active' : '' %>><a href="/">Home</a></li>
+                <li <%= title === 'News' ? 'class=active' : '' %>><a href="/news">News</a></li>
+                <li  <%= title === 'Contact' ? 'class=active' : '' %>><a href="/contact">Contact</a></li>
+                <li  <%= title === 'About Us' ? 'class=active' : '' %>><a href="/about">About Us</a></li>
+                <li  <%= title === 'News In' ? 'class=active' : '' %>><a href="/news/in">News In</a></li>
+            </ul>
+        </nav>
+        <div class="contact">
+            <div class="contact-div">
+                <h3>ელ.ფოსტა:</h3>
+                <a href="mailto:<%= settings.email %>"><%= settings.email %></a>
+            </div>
+            <div class="contact-div">
+                <h3>ტელ:</h3>
+                <a href="tel:+995 <%= settings.tel %>"><%= settings.tel %></a>
+            </div>
+            <div class="contact-div">
+                <h3>მისამართი:</h3>
+                <address><%= settings.address %></address>
+            </div>
+            <div class="contact__socials">
+                <a href="<%= settings.linkFB %>" target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="<%= settings.linkIG %>" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+    <main class="main">
+        <div class="main__top">
+            <h1>ძაღლი ბრეიკდანს</h1>
+            <form action="/news" method="POST" class="search-form">
+                <input
+                    type="text"
+                    name="search"
+                    id="search"
+                    placeholder="მოძებნე სიახლე..."
+                />
+                <button type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>

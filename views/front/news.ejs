@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('layouts/_head') %> 
+	</head>
+	<body class="news-page">
+		<%- include('layouts/_bodystart') %> 
+                <div class="section-container">
+                    <section class="main__bottom news-section <%= !articles[0] && 'not-found'%>">
+                        <div class="error404">
+                            <h2>არ არის მსგავსი ნიუსი,</h2>
+                            <h1>არაააააა!!!</h1>
+                        </div>
+
+                        <% articles.forEach(article => { %>
+                        <div class="main__bottom__each">
+                            <div class="main__bottom__each__imgdiv">
+                                <img src="/uploads/<%= article.image[0].name %>" alt="<%= article.image[0].name %>" />
+                            </div>
+                            <h2><a href="/news/?id=<%=article._id%>"
+                                ><%=article.title %></a
+                            ></h2>
+                        </div>
+                        <% }) %>
+                    </section>
+                </div>
+            </main>
+		</div>
+		<%- include('layouts/_bodyend') %> 

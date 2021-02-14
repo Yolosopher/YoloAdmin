@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <%- include('layouts/_head') %> 
+	</head>
+	<body>
+        <%- include('layouts/_bodystart') %> 
+				<div class="section-container contact-container">
+                    <h1>კონტაქტი</h1>
+                    <% if (submitted) { %>
+                        <div class="submitted-contact">
+                            <h1>ფორმა წარმატებით გაიგზავნა!</h1>
+                            <h2><a href="/contact"><i class="fas fa-undo"></i> დაბრუნდი კონტაქტის გვერდზე</a></h2>
+                        </div>
+                    <% } else { %>                     
+                        <form class="contact-form" action="/contact" enctype="multipart/form-data" method="post">
+                            <div class="contact-form__left">
+                                <div class="contact-form__left__together">
+                                    <div class="contact-form__left__one"> 
+                                        <label for="firstlastname">სახელი / გვარი:</label>
+                                        <div class="input-div">
+                                            <input type="text" name="firstlastname" id="firstlastname" placeholder="გიორგი გიორგიძე">
+                                        </div>        
+                                    </div>
+                                    <div class="contact-form__left__one">  
+                                        <label for="email">ელ. ფოსტა:</label>
+                                        <div class="input-div">
+                                            <input type="text" name="email" id="email" placeholder="example@gmail.com">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contact-form__left__one"> 
+                                    <label for="subject">სათაური:</label>
+                                    <div class="input-div">
+                                        <input type="text" name="subject" id="subject" placeholder="თემა">
+                                    </div>
+                                </div>
+                                <div class="contact-form__left__one">
+                                    <div class="same-as-label">სტატია:</div>
+                                    <textarea placeholder="ეს თემა ეხება..." name="textarea" id="textarea"></textarea>
+                                </div>  
+                            </div>
+                            <div class="contact-form__right">
+                                <div class="personal-info__one-alone" style="margin-bottom: 20px;">
+                                    <label class="label-container" for="fileimage">
+                                        <input type="file" name="fileimage" class="fileimage" id="fileimage" style="display: none;">
+                                        <div class="dz-default dz-message">
+                                            <div class="real-image">
+                                                <img src="" alt="real">
+                                            </div>
+                                            <img class="fake-image" src="/front/img/dropdownmenu.svg">
+                                                <span class="deskt">Upload or drag article's image here</span><span class="mob">Article's image</span><p class="warning">PNG, JPGE (Max Size: 2MB)</p>
+                                        </div>
+                                    </label>
+                                    <div class="real-imageX" id="removePic">
+                                        <i class="far fa-times-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="submit-button">გაგზავნა</button>
+                        </form>
+                    <% } %>
+                </div>
+			</main>
+		</div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+        <script>
+            const hiddenImageInput = document.getElementById('fileimage')
+            const removePic = document.getElementById('removePic')
+            const labelCont = document.querySelector('.label-container')
+    
+            const getSrc = (ev, fileinp) => {
+                let reader = new FileReader()
+                reader.readAsDataURL(fileinp.files[0])
+                reader.onload = () => {
+                    let src = reader.result
+                    $('.dz-message').addClass('got-input')
+                    $('.personal-info__one-alone').addClass('got-input-outer')
+                    $('.dz-message .real-image img').attr('src', src)
+                    $('.dz-message .real-image img').attr('alt', fileinp.files[0].name)
+                }
+            };
+    
+            const picRmv = (fileinp) => {
+                fileinp.value = '';
+                $('.dz-message').removeClass('got-input')
+                $('.personal-info__one-alone').removeClass('got-input-outer')
+            };
+    
+    
+            $('.personal-info__one-alone')
+                .on('dragover drop', function (e) {
+                    e.preventDefault()
+                })
+                .on('drop', function (e) {
+                    $("input.fileimage")
+                        .prop('files', e.originalEvent.dataTransfer.files)
+                        getSrc(e, hiddenImageInput)
+            })
+    
+            hiddenImageInput.addEventListener('input', (e) => {
+                getSrc(e, hiddenImageInput)
+            })
+    
+            removePic.addEventListener('click', () => {
+                picRmv(hiddenImageInput)
+            });
+    
+        </script>
+		<%- include('layouts/_bodyend') %> 
+

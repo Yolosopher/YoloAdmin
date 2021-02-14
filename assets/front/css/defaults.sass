@@ -1,0 +1,173 @@
+*     
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    transition: .1s
+    -webkit-touch-callout: none
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+    -webkit-tap-highlight-color: transparent
+
+input, input:before, input:after 
+    -webkit-user-select: initial
+    -khtml-user-select: initial
+    -moz-user-select: initial
+    -ms-user-select: initial
+    user-select: initial
+    
+input, button, textarea
+    background-color: transparent
+    border: none
+    outline: none
+     
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  
+    transition: background-color 5000s ease-in-out 0s
+
+
+a, input, textarea
+    text-decoration: none
+    color: inherit
+    font-family: inherit
+    font-weight: inherit
+    font-size: inherit
+    line-height: inherit
+
+ul
+    li
+        list-style-position: inside
+        list-style: none
+    
+div.default-ul
+    p
+        &:not(:last-child)
+            margin-bottom: 1em
+            
+    ul li
+        list-style: initial
+        list-style-position: inside
+html
+    overflow-x: auto
+    scrollbar-color: $cyan #F2F2F2
+    scrollbar-width: 10px
+html::-webkit-scrollbar 
+    @include plus1025()
+        width: 10px
+        background-color: #F2F2F2
+
+html::-webkit-scrollbar-thumb 
+    @include plus1025()
+        background-color: $cyan
+
+html::-webkit-scrollbar-track 
+    @include plus1025()
+        background-color: #F2F2F2
+*:not(html):not(body)::-webkit-scrollbar 
+    @include plus1025()
+        width: 3px
+        background-color: #F2F2F2
+
+*:not(html):not(body)::-webkit-scrollbar-thumb 
+    @include plus1025()
+        background-color: $cyan
+
+*:not(html):not(body)::-webkit-scrollbar-track 
+    @include plus1025()
+        background-color: #F2F2F2
+@import variables
+html
+    font-size: 16px
+    scroll-behavior: smooth
+    @include plus1025()
+        font-size: 13px
+    @include plus1441()
+        font-size: 14px
+    @include sizePlus(1800px)    
+        font-size: 16px
+body
+    &.noscroll
+        overflow-y: hidden
+
+
+
+// header, footer, .login-menu-slider
+//     padding: 0 10px !important
+//     @include sizePlus(900px)    
+//         padding: 0 50px !important
+//     @include plus1441()        
+//         padding: 0 140px !important
+
+// .login-menu-slider
+//     padding: 0 15px !important
+//     @include sizePlus(768px)   
+//         padding: 0 50px !important
+//     @include plus1441()        
+//         padding: 0 140px !important
+// footer
+//     &::after
+//         @include plus1025()  
+//             margin: 0 50px !important
+//         @include plus1441()        
+//             margin: 0 140px !important   
+
+
+// // info message window
+// .success-error-message-outter, .productin-size-guide
+//     position: fixed
+//     width: 0
+//     height: 0
+//     top: 0
+//     right: 0
+//     display: flex
+//     justify-content: center
+//     align-items: center
+//     background-color: rgba(23, 23, 23, 0.5)
+//     overflow: hidden
+//     z-index: -999
+//     opacity: 0
+//     transition: opacity .5s ease-in-out
+//     &.active
+//         height: 100%
+//         width: 100%
+//         opacity: 1
+//         z-index: 4
+// .success-error-message, .productin-size-guide-image-container
+//     position: relative
+//     display: flex
+//     flex-direction: column
+//     justify-content: center
+//     align-items: center
+//     width: 536px
+//     height: 400px
+//     max-width: calc( 100% - 60px )
+//     max-height: 70%
+//     overflow: hidden
+//     background-color: #fff
+//     font-family: rmn
+//     font-size: 16px
+//     line-height: 19px
+
+// .success-error-message-x-btn
+//     position: absolute
+//     top: 36px
+//     right: 36px
+//     cursor: pointer
+//     svg
+//         width: 20px
+//         height: 20px
+// .sign-svg-div
+//     margin-bottom: 72px
+// .productin-size-guide
+//     img
+//         height: 100%
+//         width: 100%
+//         object-fit: cover
+// .productin-size-guide-image-container
+//     width: 100%
+//     height: 100%
+//     max-width: 80%

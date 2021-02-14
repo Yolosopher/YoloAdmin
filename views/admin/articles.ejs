@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('layouts/_head') %> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+</head>
+<body>
+    <%- include('layouts/_header') %> 
+    <div class="articles-navigation">
+        <div class="see-all-articles active">See Articles <i class="far fa-newspaper"></i></div>
+        <div class="add-new-article">Add New Article <i class="fas fa-plus-circle"></i></div>
+    </div>
+    <main class="update-settings login-regis">
+        <form action="/admin/articles/api/add-article" method="POST" class="new-article-form" enctype="multipart/form-data">
+            <label for="title">Title:</label>
+            <div class="input-div">
+                <input type="text" name="title" id="title">
+            </div>
+            <div class="same-as-label" style="cursor: default;">Importance:</div>
+            <select name="level" id="level" class="input-div input-div-select" style="cursor: pointer;">
+                <option value="1" selected>Level 1</option>
+                <option value="2">Level 2</option>
+                <option value="3">Level 3</option>
+            </select>
+            <label for="keywords">Keywords/Topics:</label>
+            <div class="input-div">
+                <input type="text" name="keywords" id="keywords" placeholder="icecream purple john mickey naruto sasuke etc" title="Input Keywords and separate them with spaces">
+            </div>
+            <div class="same-as-label">Image:</div>
+            <div class="personal-info__one-alone" style="margin-bottom: 20px;">
+                <label class="label-container" for="fileimage">
+                    <input type="file" name="fileimage" class="fileimage" id="fileimage" style="display: none;">
+                    <div class="dz-default dz-message">
+                        <div class="real-image">
+                            <img src="" alt="real">
+                        </div>
+                        <img class="fake-image" src="/back/img/dropdownmenu.svg">
+                            <span class="deskt">Upload or drag article's image here</span><span class="mob">Article's image</span><p class="warning">PNG, JPGE (Max Size: 2MB)</p>
+                    </div>
+                </label>
+                <div class="real-imageX" id="removePic">
+                    <i class="far fa-times-circle"></i>
+                </div>
+            </div>
+            <textarea style="display: none;" name="textfield" id="textfield">
+            </textarea>
+            <button style="margin-top: 20px;" type="submit" class="submit-button">Add Article</button>
+        </form>
+    </main>
+    <main class="articles-container">
+        <section class="articles-container__section">
+            <% articles.forEach(article => { %>
+                <div class="articles-container__section__each">
+                    <div class="imgbox">
+                        <img src="/uploads/<%= article.image[0].name %>" />
+                    </div>
+                    <div class="title">
+                        <h2>
+                            <a href="/admin/articles/edit-article?id=<%=article._id%>"
+                                ><%=article.title %></a
+                            >
+                        </h2>
+                    </div>
+                </div>
+            <%}); %>
+        </section>
+    </main>
+    <!-- editor -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/25.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector('#textfield'))
+            .catch((error) => {
+                console.error(error)
+            })
+    </script>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <!-- drag-drop-image -->
+    <script>
+        const hiddenImageInput = document.getElementById('fileimage')
+        const removePic = document.getElementById('removePic')
+        const labelCont = document.querySelector('.label-container')
+
+        const getSrc = (ev, fileinp) => {
+            let reader = new FileReader()
+            reader.readAsDataURL(fileinp.files[0])
+            reader.onload = () => {
+                let src = reader.result
+                $('.dz-message').addClass('got-input')
+                $('.personal-info__one-alone').addClass('got-input-outer')
+                $('.dz-message .real-image img').attr('src', src)
+                $('.dz-message .real-image img').attr('alt', fileinp.files[0].name)
+            }
+        };
+
+        const picRmv = (fileinp) => {
+            fileinp.value = '';
+            $('.dz-message').removeClass('got-input')
+            $('.personal-info__one-alone').removeClass('got-input-outer')
+        };
+
+
+        $('.personal-info__one-alone')
+            .on('dragover drop', function (e) {
+                e.preventDefault()
+            })
+            .on('drop', function (e) {
+                $("input.fileimage")
+                    .prop('files', e.originalEvent.dataTransfer.files)
+                    getSrc(e, hiddenImageInput)
+        })
+
+        hiddenImageInput.addEventListener('input', (e) => {
+            getSrc(e, hiddenImageInput)
+        })
+
+        removePic.addEventListener('click', () => {
+            picRmv(hiddenImageInput)
+        });
+
+    </script>
+    <!-- see all or add new -->
+    <script>
+        const navs = document.querySelectorAll('.articles-navigation div')
+        const bdy = document.querySelector('body')
+
+        navs.forEach(nav => {
+            nav.addEventListener('click', () => {
+                navs.forEach(nav => nav.classList.toggle('active'))
+                bdy.classList.toggle('new-art')
+            })
+        })
+    </script>
+</body>
+</html>

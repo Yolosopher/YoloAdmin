@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<%- include('layouts/_head') %> 
+	</head>
+	<body>
+		<%- include('layouts/_bodystart') %> 
+				<section class="main__bottom home-section">
+					<% [articles[0], articles[1], articles[2], articles[3], articles[4],].forEach(article => { %>
+						<div class="main__bottom__each">
+							<div class="main__bottom__each__imgdiv">
+								<img src="/uploads/<%= article.image[0].name %>" alt="<%= article.image[0].name %>" />
+							</div>
+							<h2>
+								<a href="/news/?id=<%=article._id%>"
+									><%=article.title %></a
+								>
+							</h2>
+						</div>
+					<% }) %>
+				</section>
+			</main>
+		</div>
+		<%- include('layouts/_bodyend') %> 

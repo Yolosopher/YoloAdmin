@@ -1,0 +1,346 @@
+@import fonts
+@import variables
+@import defaults
+@import dragimg
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    list-style: none
+    resize: none
+a
+    font-family: inherit
+    font-size: inherit
+    text-decoration: none
+    color: inherit    
+    line-height: inherit
+html
+
+body
+    display: flex
+    padding: 2.75% 5.2%
+    background: #CBD2DE
+    height: 100vh
+    font-family: myriad
+    @include plus1441()
+        padding: 5.75% 5.2%
+.app
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.38)
+    width: 100%
+    overflow: hidden
+    align-items: stretch
+    border-radius: 2.5rem
+    background: linear-gradient(#eaebf2 0%, #1edad4 112.75%, #757679 100%)
+
+    background-size: contain
+    display: flex
+aside
+    height: 100%
+    width: 20%
+    flex-shrink: 0
+    padding: 0 3.33%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding-top: 2.75rem
+    padding-bottom: 2.75rem
+ul
+    display: flex
+    flex-direction: column
+    li
+        font-size: 2.5rem
+        line-height: 3rem
+        text-align: left
+        font-weight: 500
+        color: #474847
+        position: relative
+        &:not(:last-child)
+            margin-bottom: 1.25rem
+        &::after
+            width: 0.625rem
+            height: 0
+            background: linear-gradient(#2176ff 0%, #1e6ce9 169.87%, #1d67df 71.77%, #aaa 100%)
+            position: absolute
+            content: ''
+            display: block
+            transition: .1s ease-in
+            left: -1.25rem
+            top: 50%
+            transform: translateY(-50%)
+        &:hover, &.active
+            &::after
+                height: 2.1875rem
+                
+.news-page
+    .section-container
+        overflow-y: auto
+        padding: 2.75rem
+        padding-left: 0
+        padding-right: 0.625rem
+    .main
+        // m
+        &__bottom
+            // !important
+            margin-right: 0        
+            padding-bottom: 0
+        &__top
+            position: sticky
+            top: 0
+            z-index: 1
+            background-color: #EFF2F7
+
+.main
+    display: grid
+    grid-template-rows: auto 1fr
+    background-color: #EFF2F7
+    padding-left: 3.625rem
+    padding-right: 1.625rem
+    flex-grow: 1
+    &__top
+        height: 17vh
+        display: flex
+        justify-content: space-between
+        padding-top: 2.5rem
+
+    &__bottom
+        width: 100%
+        padding-bottom: 2.75rem
+        display: grid
+        grid-template-columns: 1fr 1fr 1fr
+        grid-auto-rows: 30vh
+        grid-gap: 2.3125rem 1rem
+        &.newsin
+            display: flex
+            height: 100%
+        &.not-found
+            display: flex
+            justify-content: center
+            align-items: center
+            height: 100%
+            .error404
+                display: block
+                text-align: center
+                h1
+                    font-size: 4rem
+                    color: $darkred
+        &.home-section
+            grid-auto-rows: unset
+            display: grid
+            grid-template-columns: 1fr 1fr 1fr
+            grid-template-rows: 29fr 39fr
+            grid-gap: 2.3125rem 1rem
+            .main__bottom__each
+                &:nth-of-type(4)
+                    grid-column: 1 / 3
+        &__each
+            display: flex
+            overflow: hidden
+            border-radius: 1.4375rem
+            background-color: #fff
+            position: relative
+            &__imgdiv
+                position: relative
+                overflow: hidden
+                height: 100%
+                width: 100%
+            h2
+                min-width: 90%
+                max-width: 98%
+                position: absolute
+                bottom: 1.25rem
+                right: 50%
+                transform: translateX(50%)
+                // white-space: nowrap
+                font-size: 1.375rem
+                text-align: center
+                line-height: 1.6875rem
+                color: #fff
+                letter-spacing: 0.125rem
+                text-shadow: 0px 3px 3px rgba(12, 12, 12, 0.71)
+            img
+                // display: none
+                position: absolute
+                right: 0
+                top: 0
+                height: 100%
+                width: 100%
+                object-fit: cover
+
+.search-form
+    display: flex
+    height: 4rem
+    max-width: 23.125rem
+    width: 100%
+    padding: 0 1.5625rem
+    border-radius: 1.4375rem
+    background-color: #fff
+    input
+        font-family: rmn
+        font-size: 1rem
+        flex-grow: 1
+        line-height: 1.125rem
+    button
+        cursor: pointer
+    i
+        margin-left: 0.625rem
+    
+
+.contact
+    width: 100%
+    &-div
+        color: #fff
+        &:not(:nth-of-type(3))
+            margin-bottom: 1.25rem
+        h3
+            font-size: 1.375rem
+            line-height: 1.6875rem
+            margin-bottom: 0.5rem
+            + a, +address
+                font-size: 1.0625rem
+                line-height: 1.1875rem
+                text-transform: none
+                font-style: normal
+    &__socials
+        margin-top: 3.125rem
+    i
+        font-size: 1.5rem
+        margin-right: 0.625rem
+
+
+.about-article
+    padding-right: 0.625rem
+    &__coverimg
+        width: 50%
+        float: right
+        shape-outside: ellipse()
+        margin-top: 90px
+        transform: translateY(-15px)
+        height: 40vh
+        display: flex
+        justify-content: center
+        overflow: hidden
+        border-radius: 50%
+        border: 2px solid $cyan
+        img
+            width: 100%
+            height: 100%
+            object-fit: cover
+    &__textdiv
+        font-size: 1.375rem
+        line-height: 1.6875rem
+        font-family: rmn
+    h2
+        font-size: 1.6875rem
+        line-height: 1.8125rem
+        margin-bottom: 1.875rem
+
+
+.error404
+    display: none
+
+.input-div
+    display: flex
+    padding: 0 20px
+    height: 55px
+    background-color: #fff
+    border-radius: 12px
+    input
+        width: 100%
+        display: inline-block
+.contact-container
+    h1
+        text-align: center
+        margin-bottom: 1.875rem
+        font-size: 2.2rem
+.contact-form
+    display: grid
+    grid-template-columns: 65% 1fr
+    grid-gap: 1.5625rem
+    label, .same-as-label
+        display: block
+        margin-bottom: 0.5rem
+    textarea
+        @extend .input-div
+        width: 100%
+        height: 8.125rem
+        display: block
+        padding: 20px
+    &__left
+        display: grid
+        grid-gap: 1.25rem
+        &__together
+            display: grid
+            grid-template-columns: 1fr 1fr
+            grid-gap: 1.25rem
+    &__right
+        align-self: center
+        max-width: 100%
+        > *
+            max-width: 100%
+    .submit-button
+        grid-column: 1 / 3
+        display: flex
+        align-items: center
+        height: 4.0625rem
+        max-width: 15.625rem
+        width: 100%
+        font-family: myriad
+        font-size: 1.5rem
+        justify-content: center
+        padding: 0 1.25rem
+        background-color: $darkred
+        justify-self: center
+        color: #fff
+        cursor: pointer
+        border-radius: 12px
+
+.submitted-contact
+    display: flex
+    height: 100%
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    h1
+        font-size: 2rem
+        display: block
+        color: $darkred
+        text-align: center
+        width: 100%
+    h1, h2
+        transform: translateY(-130%)
+    h2
+        text-decoration: underline
+    
+
+body .main__bottom
+    &.newsin
+        overflow-y: auto
+        overflow-x: hidden
+        max-height: 100%
+
+.one-news
+    width: 100%
+    padding-right: 10px
+    h1
+        text-align: center
+        font-size: 2rem
+        margin-bottom: 0.1rem
+    &__date
+        font-size: 0.9rem
+        text-align: center
+        margin-bottom: 2.5rem
+        time
+            font-size: 1.1rem
+            font-style: italic
+    &__imgbox
+        width: 100%
+        margin-bottom: 1.5rem
+        img
+            width: 100%
+            height: 15.625rem
+            object-fit: cover
+            border-radius: 12px
+    &__textbox
+        font-size: 1.375rem
+        line-height: 1.6875rem
+        font-family: rmn

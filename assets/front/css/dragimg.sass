@@ -1,0 +1,77 @@
+
+// new dropzone
+.dz-default
+    display: flex
+    justify-content: center
+    align-items: center
+    border-radius: 12px
+    border: 1px dashed $darkred
+    height: 220px
+    width: 100%
+    margin: 20px 0
+.dz-message
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    img
+        margin-bottom: 19px
+    span
+        color: $darkred
+        margin-bottom: 13px
+        font-size: 1rem
+        line-height: 1.125rem
+    .mob
+        display: none
+    .warning
+        color: $darkred
+        font-size: 0.75rem
+        line-height: 0.875rem
+.dropzone .dz-message
+    margin: 0 !important
+    cursor: pointer
+    margin-bottom: 30px !important
+
+.dz-message
+    cursor: pointer
+    .real-image
+        display: none
+        width: 100%
+        height: 100%
+    &.got-input
+        padding: 10px
+        > *:not(.real-image)
+            display: none !important
+        .real-image
+            display: flex
+
+.real-image
+    position: relative
+    img
+        border-radius: 12px
+        height: 100%
+        width: 100%
+        object-fit: contain
+.real-imageX
+    display: none
+    position: absolute
+    right: -10px
+    top: 0
+    z-index: 20
+    cursor: pointer
+    i
+        font-size: 25px
+        color: #F41E10
+.personal-info__one-alone
+    position: relative
+    width: 100%
+    &.got-input-outer
+        .real-imageX
+            display: unset
+.passformheading
+    margin-bottom: 38px
+    font-size: 1.375rem
+    line-height: 1.625rem
+
+.real-profile
+    padding-bottom: 80px

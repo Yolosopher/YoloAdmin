@@ -37,11 +37,8 @@ app.use(express.static(__dirname + '/assets/'))
 
 
 
-app.get('/', (req, res) => {
-    // console.log(req.cookies)
-    res.send('hi')
-})
-
+// articles
+app.use('/', require('./server/routes/router'))
 // load routers
 app.use('/admin', require('./server/routes/admin.router'))
 

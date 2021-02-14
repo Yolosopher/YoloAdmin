@@ -1,0 +1,48 @@
+// colors
+$cyan: #20CF8B
+$darkred: #3d0c11
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+    -webkit-appearance: none !important
+    margin: 0 !important
+
+
+/* Firefox */
+input[type=number] 
+    -moz-appearance: textfield !important
+
+$width361: 361px
+$width769: 769px
+$width1025: 1025px
+$width1441: 1441px
+$max-width: 101.5625em // 1415px
+
+@mixin plus361()
+    @media screen and (min-width: $width361)
+        @content
+
+@mixin plus769()
+    @media screen and (min-width: $width769)
+        @content
+
+@mixin plus1025()
+    @media screen and (min-width: $width1025)
+        @content
+
+@mixin plus1441()
+    @media screen and (min-width: $width1441)
+        @content
+
+@mixin sizePlus($width)
+    @media screen and (min-width: $width)
+        @content
+
+// @mixin upperCase($bold)
+//     font-family: mtavruli !important
+//     text-transform: uppercase !important
+//     font-weight: 500 !important
+//     @if $bold
+//         font-weight: 600 !important

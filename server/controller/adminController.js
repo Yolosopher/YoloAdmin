@@ -1,5 +1,6 @@
 const UsersDB = require('../model/users')
 const SettingsDB = require('../model/settings')
+const AboutusDB = require('../model/aboutus')
 const jwt = require('jsonwebtoken')
 
 exports.createUser = (req, res) => {
@@ -82,10 +83,6 @@ exports.logout = (req, res) => {
 	res.redirect('/admin/login')
 }
 
-exports.settings = (req, res) => {
-	// SettingsDB.find()
-	res.send('settings')
-}
 
 exports.update_settings = async (req, res) => {
 	if (req.method === 'POST') {
@@ -109,6 +106,33 @@ exports.update_settings = async (req, res) => {
 		}
 	} else {
 		let setts = await SettingsDB.find().catch((err) => console.log(err))
+		res.send(setts[0])
+	}
+}
+
+
+exports.update_aboutus = async (req, res) => {
+	if (req.method === 'POST') {
+		if (!req.body) {
+			res.status(400).send({ message: 'Content can not be empty!' })
+			return
+		}
+		// update
+		let prevSets = await AboutusDB.find().catch((err) => console.log(err))
+
+		let id = prevSets[0]._id
+
+		let updated = await AboutusDB.findByIdAndUpdate(id, req.body, { useFindAndModify: false }).catch(err => console.log(err))
+
+		if (!updated) {
+			res.status(404).send({
+				message: `Cannot Update user with ${id}. Maybe user not found!`,
+			})
+		} else {
+			res.redirect('/admin/panel/aboutus')
+		}
+	} else {
+		let setts = await AboutusDB.find().catch((err) => console.log(err))
 		res.send(setts[0])
 	}
 }
